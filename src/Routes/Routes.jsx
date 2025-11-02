@@ -4,6 +4,7 @@ import Root from '../pages/Root/Root';
 import ErrorPages from '../pages/ErrorPages/ErrorPages';
 import Home from '../pages/Home/Home';
 import About from '../pages/About/About';
+import BookDetailsl from '../components/BookDetails/BookDetailsl';
 
 
 export const router = createBrowserRouter([
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
         {
           path:'/about',
           Component:About
+        },
+        {
+          path:'/bookDetails/:id',
+          Component:BookDetailsl,
         }
     ]
   }
