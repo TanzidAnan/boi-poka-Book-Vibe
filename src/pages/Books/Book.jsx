@@ -6,9 +6,9 @@ const Book = ({ singleBook }) => {
     const {image} =singleBook
     return (
         <div>
-            <div className="card bg-base-100 w-96 shadow-sm">
+            <div className="card  w-96 bg-emerald-50 shadow-sm">
                 <figure className="p-3">
-                    <img className="h-[30vh]"
+                    <img className="h-[30vh] w-[60%] lg:w-[40%] rounded"
                         src={image}
                         alt="Shoes" />
                 </figure>
