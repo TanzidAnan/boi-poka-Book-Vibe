@@ -24,4 +24,4 @@ const addToStoreBD =(id) =>{
     }
 }
 
-export {addToStoreBD}
+export {addToStoreBD,getStoredBook}
