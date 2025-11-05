@@ -6,7 +6,8 @@ import { getStoredBook } from '../../utlites/addToDB';
 import ReadListTable from '../../components/ReadListTable/ReadListTable';
 
 const ReadList = () => {
-    const [readList, setReadList] = useState([])
+    const [readList, setReadList] = useState([]);
+    const [sort, setSort] = useState('')
     const data = useLoaderData();
     console.log(data)
 
@@ -20,8 +21,21 @@ const ReadList = () => {
         setReadList(myReadList)
     }, [])
 
+    const handleSort = (type) => {
+        setSort(type)
+        if (type === 'pages') {
+            const sortedByPage = [...readList].sort((a, b) => a.totalPages - b.totalPages);
+            setReadList(sortedByPage)
+        }
+        if(type ==='ratings'){
+            const sortedByRating =[...readList].sort((a,b) =>a.rating -b.rating);
+            setReadList(sortedByRating)
+        }
+    }
+
     return (
         <div>
+
             <Tabs>
                 <TabList>
                     <Tab>Read Book List</Tab>
@@ -30,9 +44,20 @@ const ReadList = () => {
 
                 <TabPanel>
                     <h2 className='text-center text-3xl font-bold text-blue-900'>Book i read :{readList.length}</h2>
+                    {/* ================ */}
+
+                    <div className="dropdown dropdown-start">
+                        <div tabIndex={0} role="button" className="btn m-1">sort by :{sort ? sort : ''}</div>
+                        <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                            <li><a onClick={() => handleSort('pages')}>Pages</a></li>
+                            <li><a onClick={() => handleSort('ratings')}>Ratings</a></li>
+                        </ul>
+                    </div>
+
+                    {/* =================== */}
                     <div className=''>
                         {
-                            readList.map(b =><ReadListTable key={b.bookId} b={b}></ReadListTable>)
+                            readList.map(b => <ReadListTable key={b.bookId} b={b}></ReadListTable>)
                         }
                     </div>
                 </TabPanel>
