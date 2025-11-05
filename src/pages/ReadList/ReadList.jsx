@@ -3,22 +3,22 @@ import { useLoaderData } from 'react-router';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { getStoredBook } from '../../utlites/addToDB';
-import Book from '../Books/Book';
+import ReadListTable from '../../components/ReadListTable/ReadListTable';
 
 const ReadList = () => {
-    const [readList,setReadList] =useState([])
-    const data =useLoaderData();
+    const [readList, setReadList] = useState([])
+    const data = useLoaderData();
     console.log(data)
 
-    useEffect(() =>{
-        
-        const storedBookData =getStoredBook();
+    useEffect(() => {
+
+        const storedBookData = getStoredBook();
         console.log(storedBookData)
-        const convertedStoredBooks=storedBookData.map(id =>parseInt(id));
-        const myReadList =data.filter(book=>convertedStoredBooks.includes(book.bookId));
+        const convertedStoredBooks = storedBookData.map(id => parseInt(id));
+        const myReadList = data.filter(book => convertedStoredBooks.includes(book.bookId));
         console.log(myReadList)
         setReadList(myReadList)
-    },[])
+    }, [])
 
     return (
         <div>
@@ -29,10 +29,12 @@ const ReadList = () => {
                 </TabList>
 
                 <TabPanel>
-                    <h2>Book i read {readList.length}</h2>
-                    {
-                        readList.map(b =><Book key={b.bookId} singleBook={b}></Book>)
-                    }
+                    <h2 className='text-center text-3xl font-bold text-blue-900'>Book i read :{readList.length}</h2>
+                    <div className=''>
+                        {
+                            readList.map(b =><ReadListTable key={b.bookId} b={b}></ReadListTable>)
+                        }
+                    </div>
                 </TabPanel>
                 <TabPanel>
                     <h2>My wish List</h2>
