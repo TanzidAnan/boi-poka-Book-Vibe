@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SingleBookDetails = ({ singleBooks }) => {
+const SingleBookDetails = ({ singleBooks,handleMaekAsRead }) => {
     const {bookId,image,bookName,author,review} = singleBooks;
     return (
         <div>
@@ -14,7 +14,8 @@ const SingleBookDetails = ({ singleBooks }) => {
                     <h2 className="card-title">{bookName}</h2>
                     <p>{review}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Watch</button>
+                        <button onClick={() =>handleMaekAsRead(bookId)} className="btn btn-primary">Mar as Read</button>
+                        <button className="btn bg-yellow-300">Add To WishList</button>
                     </div>
                 </div>
             </div>

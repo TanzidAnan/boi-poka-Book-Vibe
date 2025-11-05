@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import SingleBookDetails from './SingleBookDetails';
+import { addToStoreBD } from '../../utlites/addToDB';
 
 const BookDetailsl = () => {
 
@@ -12,13 +13,16 @@ const BookDetailsl = () => {
     const singleBooks = data.find(book => book.bookId === bookId)
     // console.log(singleBooks)
 
+    const handleMaekAsRead =(id) =>{
+        console.log(id)
+        addToStoreBD(id)
+    }
+
     
 
     return (
         <div>
-            <h1>Book datils</h1>
-            <SingleBookDetails singleBooks={singleBooks}></SingleBookDetails>
-
+            <SingleBookDetails singleBooks={singleBooks} handleMaekAsRead={handleMaekAsRead}></SingleBookDetails>
         </div>
     );
 };
